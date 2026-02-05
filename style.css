@@ -1,0 +1,104 @@
+:root {
+    --primary: #6366f1;
+    --success: #22c55e;
+    --bg: #0f172a;
+    --card: rgba(30, 41, 59, 0.7);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at top left, #1e1b4b, var(--bg));
+    color: white;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.glass-container {
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 24px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+}
+
+header h1 { margin: 0; font-weight: 600; letter-spacing: -1px; }
+header h1 span { color: var(--primary); }
+header p { color: #94a3b8; font-size: 0.9rem; }
+
+.upload-area {
+    border: 2px dashed #334155;
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    margin-top: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-area:hover { border-color: var(--primary); background: rgba(99, 102, 241, 0.05); }
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.preview-box {
+    position: relative;
+    background: #020617;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+}
+
+.preview-box img {
+    max-width: 100%;
+    border-radius: 8px;
+    max-height: 250px;
+    object-fit: contain;
+}
+
+.badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #334155;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+}
+
+.badge.success { background: var(--success); }
+
+.controls {
+    background: rgba(255,255,255,0.05);
+    padding: 1.5rem;
+    border-radius: 16px;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--primary);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.primary-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
