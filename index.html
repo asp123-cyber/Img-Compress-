@@ -3,89 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwiftCompress | Modern Image Optimizer</title>
+    <title>SwiftCompress | Pro Image & PDF Optimizer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 </head>
 <body>
 
-<div class="glass-container">
-    <header>
-        <h1>Swift<span>Compress</span></h1>
-        <p>Fast, secure, client-side image optimization.</p>
-    </header>
+    <div class="glass-container">
+        <header>
+            <div class="logo">Swift<span>Compress</span></div>
+            <p class="subtitle">Fast. Private. Professional.</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" id="img-tab">Images</button>
+                <button class="tab-btn" id="pdf-tab">PDF Documents</button>
+            </div>
+        </header>
 
-    <main>
-        <div class="upload-area" id="drop-zone">
-            <input type="file" id="file-input" accept="image/*" hidden>
-            <div class="icon">📸</div>
-            <p>Drag & drop or <span>browse</span></p>
-        </div>
-
-        <div class="editor-section" id="editor-section" style="display: none;">
-            <div class="preview-grid">
-                <div class="preview-box">
-                    <small>Original</small>
-                    <img id="original-preview" src="" alt="">
-                    <span id="original-size" class="badge">0 KB</span>
+        <main>
+            <div class="upload-area" id="drop-zone">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                <div class="icon-circle">
+                    <span id="mode-icon">📸</span>
                 </div>
-                <div class="preview-box">
-                    <small>Compressed</small>
-                    <img id="compressed-preview" src="" alt="">
-                    <span id="compressed-size" class="badge success">0 KB</span>
-                </div>
+                <p id="upload-text">Drag & drop image or <span>browse</span></p>
+                <small>Files never leave your device</small>
             </div>
 
-            <div class="controls">
-                <div class="control-group">
-                    <label>Target Size: <span id="target-val">50</span> KB</label>
-                    <input type="range" id="size-slider" min="10" max="500" value="50">
+            <div class="editor-section" id="editor-section" style="display: none;">
+                
+                <div id="image-preview-container" class="preview-grid">
+                    <div class="preview-box">
+                        <small>Original</small>
+                        <div class="img-wrapper">
+                            <img id="original-preview" src="" alt="Original">
+                        </div>
+                        <span id="original-size" class="badge">0 KB</span>
+                    </div>
+                    <div class="preview-box">
+                        <small>Optimized</small>
+                        <div class="img-wrapper">
+                            <img id="compressed-preview" src="" alt="Compressed">
+                        </div>
+                        <span id="compressed-size" class="badge success">0 KB</span>
+                    </div>
                 </div>
-                <button id="download-btn" class="primary-btn">Download Compressed Image</button>
+
+                <div id="pdf-status-card" class="status-card" style="display: none;">
+                    <div class="pdf-icon">📄</div>
+                    <h3 id="pdf-name">document.pdf</h3>
+                    <div class="size-row">
+                        <span id="pdf-orig-size">0 KB</span>
+                        <span class="arrow">→</span>
+                        <span class="optimized-label">Optimizing...</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="control-header">
+                        <label>Target Size</label>
+                        <span class="kb-display"><span id="target-val">50</span> KB</span>
+                    </div>
+                    <input type="range" id="size-slider" min="10" max="1000" value="50">
+                    
+                    <div class="action-area">
+                        <button id="download-btn" class="primary-btn">
+                            Download Optimized File
+                        </button>
+                        <button onclick="location.reload()" class="reset-link">Clear and start over</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </main>
-</div>
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+        </main>
+    </div>
 
-<div class="glass-container">
-    <header>
-        <h1>Swift<span>Compress</span></h1>
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchMode('image')">Images</button>
-            <button class="tab-btn" onclick="switchMode('pdf')">PDF Documents</button>
-        </div>
-    </header>
+    <div class="blob"></div>
+    <div class="blob-2"></div>
 
-    <main id="main-content">
-        <div class="upload-area" id="drop-zone">
-            <input type="file" id="file-input" accept="image/*" hidden>
-            <div class="icon" id="mode-icon">📸</div>
-            <p id="upload-text">Drag & drop image or <span>browse</span></p>
-        </div>
-
-        <div class="editor-section" id="editor-section" style="display: none;">
-            <div id="image-preview-container" class="preview-grid">
-                </div>
-
-            <div id="pdf-status" class="status-card" style="display: none;">
-                <p id="pdf-info">Selected: document.pdf</p>
-                <div class="size-compare">
-                    <span id="pdf-orig-size">0 KB</span> → <span id="pdf-new-size">Processing...</span>
-                </div>
-            </div>
-
-            <div class="controls">
-                <div class="control-group">
-                    <label>Compression Level: <span id="level-val">Medium</span></label>
-                    <input type="range" id="compression-slider" min="1" max="3" value="2">
-                </div>
-                <button id="download-btn" class="primary-btn">Download Compressed File</button>
-            </div>
-        </div>
-    </main>
-</div>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
