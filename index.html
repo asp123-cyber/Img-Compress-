@@ -1,53 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwiftCompress | Modern Image Optimizer</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 
 <div class="glass-container">
     <header>
         <h1>Swift<span>Compress</span></h1>
-        <p>Fast, secure, client-side image optimization.</p>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchMode('image')">Images</button>
+            <button class="tab-btn" onclick="switchMode('pdf')">PDF Documents</button>
+        </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <div class="upload-area" id="drop-zone">
             <input type="file" id="file-input" accept="image/*" hidden>
-            <div class="icon">📸</div>
-            <p>Drag & drop or <span>browse</span></p>
+            <div class="icon" id="mode-icon">📸</div>
+            <p id="upload-text">Drag & drop image or <span>browse</span></p>
         </div>
 
         <div class="editor-section" id="editor-section" style="display: none;">
-            <div class="preview-grid">
-                <div class="preview-box">
-                    <small>Original</small>
-                    <img id="original-preview" src="" alt="">
-                    <span id="original-size" class="badge">0 KB</span>
+            <div id="image-preview-container" class="preview-grid">
                 </div>
-                <div class="preview-box">
-                    <small>Compressed</small>
-                    <img id="compressed-preview" src="" alt="">
-                    <span id="compressed-size" class="badge success">0 KB</span>
+
+            <div id="pdf-status" class="status-card" style="display: none;">
+                <p id="pdf-info">Selected: document.pdf</p>
+                <div class="size-compare">
+                    <span id="pdf-orig-size">0 KB</span> → <span id="pdf-new-size">Processing...</span>
                 </div>
             </div>
 
             <div class="controls">
                 <div class="control-group">
-                    <label>Target Size: <span id="target-val">50</span> KB</label>
-                    <input type="range" id="size-slider" min="10" max="500" value="50">
+                    <label>Compression Level: <span id="level-val">Medium</span></label>
+                    <input type="range" id="compression-slider" min="1" max="3" value="2">
                 </div>
-                <button id="download-btn" class="primary-btn">Download Compressed Image</button>
+                <button id="download-btn" class="primary-btn">Download Compressed File</button>
             </div>
         </div>
     </main>
 </div>
-
-<script src="script.js"></script>
-</body>
-</html>
